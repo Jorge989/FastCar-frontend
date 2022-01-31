@@ -1,0 +1,53 @@
+{
+  "carros": [
+    {
+      "id": "1",
+      "nome": "Ford Fusion",
+      "marca": "Ford",
+      "ano": "2017",
+      "cambio": "Automática",
+      "descricao": "ÚNICO DONO * TODAS AS REVISÕES EM CONCESSIONÁRIA - ÚLTIMA COM 28 MIL KM *",
+      "items": ["Airbag", "Alarme", "Ar condicionado", "GPS"],
+      "image": [
+        "https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202201/20220115/ford-fusion-2.0-titanium-fwd-16v-gasolina-4p-automatico-wmimagem14114663020.jpg?s=fill&w=552&h=414&q=60",
+        "https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202201/20220115/ford-fusion-2.0-titanium-fwd-16v-gasolina-4p-automatico-wmimagem14114703631.jpg?s=fill&w=552&h=414&q=60",
+        "https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202201/20220115/ford-fusion-2.0-titanium-fwd-16v-gasolina-4p-automatico-wmimagem14114736530.jpg?s=fill&w=552&h=414&q=60"
+      ]
+    },
+    {
+      "id": "2",
+      "nome": "Hyundai HB20S",
+      "marca": "Hyundai",
+      "ano": "2016",
+      "cambio": "Manual",
+      "descricao": "03 revisões já realizada na concessionário. Veículo ainda em garantia de fábrica.",
+      "items": ["Airbag", "Alarme", "Ar condicionado", "GPS", "Banco de couro"],
+      "image": [
+        "https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202201/20220125/hyundai-hb20s-1.6-comfort-style-16v-flex-4p-manual-wmimagem10103089497.jpg?s=fill&w=552&h=414&q=60",
+        "https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202201/20220125/hyundai-hb20s-1.6-comfort-style-16v-flex-4p-manual-wmimagem10103139436.jpg?s=fill&w=552&h=414&q=60",
+        "https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202201/20220125/hyundai-hb20s-1.6-comfort-style-16v-flex-4p-manual-wmimagem10103228439.jpg?s=fill&w=552&h=414&q=60"
+      ]
+    },
+    {
+      "id": "3",
+      "nome": "Honda Civic",
+      "marca": "Honda",
+      "ano": "2014",
+      "cambio": "Manual",
+      "descricao": "Este veículo possui laudo cautelar que comprova sua alta qualidade e procedência.",
+      "items": [
+        "Airbag",
+        "Alarme",
+        "Ar condicionado",
+        "GPS",
+        "Banco de couro",
+        "Vidros elétricos"
+      ],
+      "image": [
+        "https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202201/20220124/honda-civic-2.0-lxr-16v-flex-4p-automatico-wmimagem10162300429.jpg?s=fill&w=552&h=414&q=60",
+        "https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202201/20220131/honda-civic-2.0-16v-flexone-ex-4p-cvt-wmimagem08303667893.jpg?s=fill&w=552&h=414&q=60",
+        "https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202201/20220131/honda-civic-2.0-16v-flexone-ex-4p-cvt-wmimagem08303811761.jpg?s=fill&w=552&h=414&q=60"
+      ]
+    }
+  ]
+}
