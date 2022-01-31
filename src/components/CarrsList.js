@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./CarrsList.css";
 import { Link } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
@@ -23,14 +22,14 @@ export default function CarrsList({ carros }) {
             {/* <img src={carro.image}></img> */}
             <Carousel>
               <div>
-                <img src={carro.image} alt="image-1" />
+                <img src={carro.image} alt="fusion" />
                 {/* <p className="legend">Foto 1</p> */}
               </div>
               <div>
-                <img src={carro.image[1]} alt="image-2" />
+                <img src={carro.image[1]} alt="hb20" />
               </div>
               <div>
-                <img src={carro.image[2]} alt="image-3" />
+                <img src={carro.image[2]} alt="civic" />
               </div>
             </Carousel>
             {/* <button className="rightbtn">{">"}</button> */}
