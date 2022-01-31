@@ -5,16 +5,11 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 export default function CarrsList({ carros }) {
   const [carrosImg, setCarroImg] = useState(carros.map((carro) => carro.image));
-  if (carros.length == 0) {
+  if (carros.length === 0) {
     return <div>Nenhum carro econtrado...</div>;
   }
   console.log(carrosImg);
-  const handleCarrsCarrousel = (carros) => {
-    setCarroImg((carroAnterior) => {
-      console.log(carroAnterior, carros.image);
-      return [...carroAnterior, carros.image];
-    });
-  };
+
   return (
     <div className="carros-list">
       {carros.map((carro) => (
