@@ -18,6 +18,7 @@ p {
   margin: 0;
 }
 input,
+select,
 textarea {
   color: #333;
   padding: 8px;

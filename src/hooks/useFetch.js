@@ -32,8 +32,30 @@ export const useFetch = (url, method = "GET") => {
     //entao ele segue delcarando constantes como a funcao fetchData
     //e uma funcao asyncrona que recebe um parametro(fetchOptions)
     const fetchData = async (fetchOptions) => {
+      //aqui troca setIspending para true
       setIsPending(true);
+      //try
       try {
+        //constante resposta recebe  await fetch com await (url) recebe url de parametro
+        //e tudo ...com spread que tem no parametro fetchOptions
+        //e tbm um valor chamado signal: que recebe controller.signal
+        //em seguinda se ! for o contratrio de res.ok
+        // throw new Error (res.statusText)
+        //saindo do if constante data  recebe res.json();
+        //em seguida passa setIsPending para false
+        //setDate passando o data que é a resposta da chamada http
+        //e o setError null
+        //caso de erro cai no catch (err)
+        //se err.name === "AbortError" console.log("th Fetch was aborted")
+        //senao setIsPending(false) setError("Could not fetch the data")
+        //sai dos ifs dos catchs dos elses
+        //outro if se paramtro method for ==="GET"
+        //fetchData() //se (method ==="POST" && options)
+        //fetchData(options)
+        //return ()=> controller abort() ou seja dps de executar tudo isso ele
+        //aborta o controller
+        //dependencias do useEffect url,options,method
+        //retorna { data, isPending, error, postData }
         const res = await fetch(url, {
           ...fetchOptions,
           signal: controller.signal,

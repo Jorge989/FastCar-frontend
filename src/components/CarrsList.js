@@ -13,17 +13,9 @@ export default function CarrsList({ carros }) {
         <div key={carro.id} className="card">
           <div className="imgContainer">
             {" "}
-            {/* <button
-              className="leftbtn"
-              // onClick={() => handleCarrsCarrousel(carro.image)}
-            >
-              {"<"}
-            </button> */}
-            {/* <img src={carro.image}></img> */}
             <Carousel>
               <div>
-                <img src={carro.image} alt="fusion" />
-                {/* <p className="legend">Foto 1</p> */}
+                <img src={carro.image[0]} alt="fusion" />
               </div>
               <div>
                 <img src={carro.image[1]} alt="hb20" />
@@ -32,7 +24,6 @@ export default function CarrsList({ carros }) {
                 <img src={carro.image[2]} alt="civic" />
               </div>
             </Carousel>
-            {/* <button className="rightbtn">{">"}</button> */}
           </div>
 
           <h3>{carro.nome}</h3>
