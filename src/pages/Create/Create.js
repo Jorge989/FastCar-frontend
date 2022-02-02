@@ -3,7 +3,7 @@ import "./Create.css";
 import { useEffect, useRef, useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { useHistory } from "react-router-dom";
-
+import api from "../../service/api";
 export default function Create() {
   const [nome, setNome] = useState("");
   const [marca, setMarca] = useState("");
@@ -12,15 +12,15 @@ export default function Create() {
   const [descricao, setDescricao] = useState("");
   const [items, setItems] = useState([]);
   const [newitem, setNewItem] = useState("");
-  const [img, setImg] = useState([]);
+  const [img, setImg] = useState("");
   const itemImput = useRef(null);
   const history = useHistory();
-  console.log(items);
+  console.log(img);
   const { postData, data, error } = useFetch(
     "http://localhost:3000/carros",
     "POST"
   );
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     postData({
       nome: nome,
@@ -31,7 +31,19 @@ export default function Create() {
       items: items,
       img: img,
     });
+    const data = new FormData(e.currentTarget);
+    const response = await uploadImage(data);
+    setImg(response.data.data.display_url);
   }
+
+  function uploadImage(data) {
+    return api.post("/upload", data, {
+      params: {
+        key: "bccafb6fa47149d5bddb7cc51cf49e63",
+      },
+    });
+  }
+
   const handleAdd = (e) => {
     e.preventDefault();
     const carro = newitem.trim();
@@ -50,6 +62,16 @@ export default function Create() {
     <div className="create">
       <h2 className="page-title">Criar novo anuncío</h2>
       <form onSubmit={handleSubmit}>
+        <label>
+          <span>Imagens:</span>
+          <input
+            name="image"
+            type="file"
+            onChange={(e) => uploadImage(e.target.value)}
+            required
+            value={img}
+          ></input>
+        </label>
         <label>
           <span>Nome do veículo:</span>
           <input
