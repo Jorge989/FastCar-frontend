@@ -3,7 +3,7 @@ import { useTheme } from "../hooks/useTheme";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 export default function Navbar() {
-  const { color, changeColor } = useTheme();
+  const { color } = useTheme();
 
   console.log(color);
 

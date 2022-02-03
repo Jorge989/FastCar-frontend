@@ -16,10 +16,7 @@ export default function Create() {
   const itemImput = useRef(null);
   const history = useHistory();
   console.log(img);
-  const { postData, data, error } = useFetch(
-    "http://localhost:3000/carros",
-    "POST"
-  );
+  const { postData, data } = useFetch("http://localhost:3000/carros", "POST");
   async function handleSubmit(e) {
     e.preventDefault();
     postData({
@@ -57,7 +54,7 @@ export default function Create() {
     if (data) {
       history.push("/");
     }
-  }, [data]);
+  }, [data, history]);
   return (
     <div className="create">
       <h2 className="page-title">Criar novo anuncío</h2>
