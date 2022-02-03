@@ -1,8 +1,10 @@
 import "./CarrsList.css";
 import { Link } from "react-router-dom";
+import { useTheme } from "../hooks/useTheme";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 export default function CarrsList({ carros }) {
+  const { mode } = useTheme();
   if (carros.length === 0) {
     return <div>Nenhum carro econtrado...</div>;
   }
@@ -10,7 +12,7 @@ export default function CarrsList({ carros }) {
   return (
     <div className="carros-list">
       {carros.map((carro) => (
-        <div key={carro.id} className="card">
+        <div key={carro.id} className={`card ${mode}`}>
           <div className="imgContainer">
             {" "}
             <Carousel>

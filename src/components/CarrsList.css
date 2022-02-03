@@ -114,3 +114,15 @@
   transition: all 0.3s ease;
   background-color: #f3123c;
 }
+
+.carros-list .card.dark {
+  background: rgb(31, 31, 31);
+}
+.carros-list .card.dark p,
+.carros-list .card.dark h3,
+.carros-list .card.dark div {
+  color: #e4e4e4;
+}
+.carros-list h3 {
+  margin-top: -15px;
+}
