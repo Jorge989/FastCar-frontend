@@ -9,10 +9,8 @@ export default function Home() {
   const [error, setError] = useState(false);
   useEffect(() => {
     setIsPending(true);
-    projectFirestore
-      .collection("fastcar")
-      .get()
-      .then((snapshot) => {
+    const unsub = projectFirestore.collection("fastcar").onSnapshot(
+      (snapshot) => {
         if (snapshot.empty) {
           console.log("aqui", snapshot.empty);
           setError("No recipes to load");
@@ -25,10 +23,13 @@ export default function Home() {
           setData(results);
           setIsPending(false);
         }
-      })
-      .catch((err) => {
+      },
+      (err) => {
         setError(err.message);
-      });
+        setIsPending(false);
+      }
+    );
+    return () => unsub();
   }, []);
   // const { data, isPending, error } = useFetch("http://localhost:3000/carros");
   return (

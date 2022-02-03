@@ -1,7 +1,8 @@
 import React from "react";
 import "./Create.css";
 import { useEffect, useRef, useState } from "react";
-import { useFetch } from "../../hooks/useFetch";
+import { projectFirestore } from "../../firebase/config";
+// import { useFetch } from "../../hooks/useFetch";
 import { useHistory } from "react-router-dom";
 import api from "../../service/api";
 export default function Create() {
@@ -12,14 +13,16 @@ export default function Create() {
   const [descricao, setDescricao] = useState("");
   const [items, setItems] = useState([]);
   const [newitem, setNewItem] = useState("");
-  const [img, setImg] = useState("");
+  const [img, setImg] = useState([]);
+  const [newImg, setNewImg] = useState("");
   const itemImput = useRef(null);
+  const itemImputimg = useRef(null);
   const history = useHistory();
   console.log(img);
-  const { postData, data } = useFetch("http://localhost:3000/carros", "POST");
+  // const { postData, data } = useFetch("http://localhost:3000/carros", "POST");
   async function handleSubmit(e) {
     e.preventDefault();
-    postData({
+    const doc = {
       nome: nome,
       marca: marca,
       ano: ano,
@@ -27,18 +30,14 @@ export default function Create() {
       descricao: descricao,
       items: items,
       img: img,
-    });
-    const data = new FormData(e.currentTarget);
-    const response = await uploadImage(data);
-    setImg(response.data.data.display_url);
-  }
+    };
 
-  function uploadImage(data) {
-    return api.post("/upload", data, {
-      params: {
-        key: "bccafb6fa47149d5bddb7cc51cf49e63",
-      },
-    });
+    try {
+      await projectFirestore.collection("fastcar").add(doc);
+      history.push("/");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const handleAdd = (e) => {
@@ -50,11 +49,17 @@ export default function Create() {
     setNewItem("");
     itemImput.current.focus();
   };
-  useEffect(() => {
-    if (data) {
-      history.push("/");
+  const handleAddImg = (e) => {
+    e.preventDefault();
+    const carroimg = newImg.trim();
+    if (carroimg && !img.includes(carroimg)) {
+      setImg((antigoItem) => [...antigoItem, carroimg]);
     }
-  }, [data, history]);
+    setNewImg("");
+    itemImputimg.current.focus();
+  };
+
+  console.log("aqui", img);
   return (
     <div className="create">
       <h2 className="page-title">Criar novo anuncío</h2>
@@ -64,10 +69,19 @@ export default function Create() {
           <input
             name="image"
             type="file"
-            onChange={(e) => uploadImage(e.target.value)}
-            required
-            value={img}
+            onChange={(e) => setNewImg(e.target.value)}
+            value={newImg}
+            ref={itemImputimg}
           ></input>
+          <p>
+            Fotos:{""}
+            {img.map((i) => (
+              <em key={i}> {i}, </em>
+            ))}
+          </p>
+          <button className="btn" onClick={handleAddImg}>
+            +
+          </button>
         </label>
         <label>
           <span>Nome do veículo:</span>

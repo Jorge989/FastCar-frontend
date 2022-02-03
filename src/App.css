@@ -1,7 +1,9 @@
 .App {
   min-width: 100%;
+  height: 100%;
 }
 .App.dark {
   background: rgb(24, 24, 24);
   transition: 0.5s;
+  min-height: 100%;
 }

@@ -12,11 +12,10 @@ export default function Recipes() {
   const [error, setError] = useState(false);
   useEffect(() => {
     setIsPending(true);
-    projectFirestore
+    const unsub = projectFirestore
       .collection("fastcar")
       .doc(id)
-      .get()
-      .then((doc) => {
+      .onSnapshot((doc) => {
         if (doc.exists) {
           setIsPending(false);
           setCarros(doc.data());
@@ -25,8 +24,11 @@ export default function Recipes() {
           setError("Carro não encontrado");
         }
       });
+    return () => unsub();
   }, [id]);
-
+  // const handleClick = () => {
+  //   projectFirestore.collection("fastcar").doc(id).update({});
+  // };
   return (
     <div className="carros-list-recipe">
       {error && <p className="error">{error}</p>}
@@ -67,6 +69,7 @@ export default function Recipes() {
             </div>
             <div className="descricao">
               {carro.descricao.substring(0, 100)}...
+              {/* <button onClick={() => handleClick()}>Atualizar</button> */}
             </div>
           </div>
         </>
