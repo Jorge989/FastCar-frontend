@@ -1,7 +1,7 @@
 import React from "react";
 import "./Create.css";
 import { useEffect, useRef, useState } from "react";
-import { projectFirestore } from "../../firebase/config";
+import { projectFirestore, storage } from "../../firebase/config";
 // import { useFetch } from "../../hooks/useFetch";
 import { useHistory } from "react-router-dom";
 import api from "../../service/api";
@@ -18,10 +18,12 @@ export default function Create() {
   const itemImput = useRef(null);
   const itemImputimg = useRef(null);
   const history = useHistory();
-  console.log(img);
-  // const { postData, data } = useFetch("http://localhost:3000/carros", "POST");
+  const [progress, setProgress] = useState(0);
+
   async function handleSubmit(e) {
     e.preventDefault();
+    const file = e.target[0].file[0];
+    uploadFiles(file);
     const doc = {
       nome: nome,
       marca: marca,
@@ -39,7 +41,28 @@ export default function Create() {
       console.log(err);
     }
   }
-
+  const uploadFiles = (file) => {
+    const uploadTask = storage.ref(`files/${file.name}`).put(file);
+    uploadTask.on(
+      "state_change",
+      (snapshot) => {
+        const prog = Math.round(
+          (snapshot.bytesTrasferred / snapshot.totalBytes) * 100
+        );
+        setProgress(prog);
+      },
+      (error) => console.log(error),
+      () => {
+        storage
+          .ref("files")
+          .child(file.name)
+          .getDownloadURL()
+          .then((url) => {
+            console.log(url);
+          });
+      }
+    );
+  };
   const handleAdd = (e) => {
     e.preventDefault();
     const carro = newitem.trim();
@@ -66,13 +89,8 @@ export default function Create() {
       <form onSubmit={handleSubmit}>
         <label>
           <span>Imagens:</span>
-          <input
-            name="image"
-            type="file"
-            onChange={(e) => setNewImg(e.target.value)}
-            value={newImg}
-            ref={itemImputimg}
-          ></input>
+          <h2>Carregamento concluído {progress}%</h2>
+          <input type="file" className="input"></input>
           <p>
             Fotos:{""}
             {img.map((i) => (

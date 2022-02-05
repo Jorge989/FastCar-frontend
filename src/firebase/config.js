@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
-
+import "firebase/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyB-gJf-qVzl4HCipfhb3qS-y0TiyrDJed4",
   authDomain: "fastcar-a9146.firebaseapp.com",
@@ -11,4 +11,5 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const projectFirestore = firebase.firestore();
-export { projectFirestore };
+const storage = firebase.storage();
+export { projectFirestore, storage, firebase as default };
